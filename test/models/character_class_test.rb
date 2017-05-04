@@ -12,10 +12,17 @@ class CharacterClassTest < ActiveSupport::TestCase
     assert_equal "3 + INT", character_class.skill_ranks
   end
 
-  def test_character_classes_validates_names_without_name
-    skip
+  def test_character_classes_validates_presence_of_name
     character_class = CharacterClass.new(name: "", hit_die: "1 d12")
-    assert_not post.valid?
-    assert_equal ["requires a name"]
+
+    assert character_class.invalid?
+  end
+
+  def test_character_classes_generates_an_error_on_a_blank_name
+    character_class = CharacterClass.new(name: "", hit_die: "1 d12")
+
+    character_class.valid?
+
+    assert_equal ["can't be blank"], character_class.errors["name"]
   end
 end

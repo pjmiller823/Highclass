@@ -13,4 +13,9 @@ class CharacterClassesControllerTest < ActionDispatch::IntegrationTest
     get character_classes_url
     assert_equal 5, assigns(:characterclass).length
   end
+
+  test "should get show" do
+    get character_class_url
+    assert_response :success
+  end
 end

@@ -18,4 +18,17 @@ class CharacterClassesControllerTest < ActionDispatch::IntegrationTest
     get character_class_url
     assert_response :success
   end
+
+  test "should display the correct character class" do
+    skip
+    CharacterClass.create(name: "barbarian")
+    CharacterClass.create(name: "bard")
+    CharacterClass.create(name: "cleric")
+    get character_class_url
+  end
+
+  test "should get new" do
+    get character_class_new_url
+    assert_response :success
+  end
 end
